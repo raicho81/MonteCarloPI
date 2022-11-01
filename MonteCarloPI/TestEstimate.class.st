@@ -27,7 +27,17 @@ TestEstimate >> testWorking [
 	Transcript
 		show: 'PI (estimated): ';
 		show: pi_estimate;
+		cr;
+		show: '#shots:';
+		show: inst shots;
+		cr;
+		show: '#hits:';
+		show: inst hits;
+		cr;
+		show: 'epsilon:';
+		show: inst epsilon;
 		cr.
+	
 	self
 		assert: (pi_estimate roundDownTo: 7)
 		equals: (Float pi roundDownTo: 7)
