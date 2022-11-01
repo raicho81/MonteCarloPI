@@ -65,6 +65,26 @@ MonteCarloPiEstimator >> estimate: target_eps inner_iterations: iter_count [
 	^ pi
 ]
 
+{ #category : #compute }
+MonteCarloPiEstimator >> estimate: target_eps min_iterations: min_iter_count [
+
+	| x y pi_i_1 pi_i |
+	pi_i := pi.
+
+	[ epsilon > target_eps or: shots < min_iter_count ] whileTrue: [ 
+		pi_i_1 := pi_i.
+		x := rand nextBetween: -1 and: 1.
+		y := rand nextBetween: -1 and: 1.
+		x * x + (y * y) <= 1 ifTrue: [ hits := hits + 1 ].
+		shots := shots + 1.
+		pi_i := 4.0 * (hits / shots).
+		epsilon := pi_i_1 - pi_i.
+		epsilon < 0 ifTrue: [ epsilon := -1 * epsilon ] ].
+
+	pi := pi_i.
+	^ pi
+]
+
 { #category : #accessing }
 MonteCarloPiEstimator >> hits [
 
@@ -84,7 +104,8 @@ MonteCarloPiEstimator >> initialize [
 	epsilon := Float infinity.
 	hits := 0.
 	shots := 0.
-	rand := Random new
+	rand := Random new.
+	rand useUnixRandomGeneratorSeed.
 ]
 
 { #category : #accessing }
