@@ -23,22 +23,25 @@ TestEstimate >> testWorking [
 
 	| inst pi_estimate |
 	inst := MonteCarloPiEstimator new.
-	pi_estimate := inst estimate: 0.00000001 min_iterations: 10000.
+	pi_estimate := inst estimate: 0.000000001 min_iterations: 10000.
 	Transcript
 		show: 'PI (estimated): ';
 		show: pi_estimate;
 		cr;
-		show: '#shots:';
+		show: '#Shots: ';
 		show: inst shots;
 		cr;
-		show: '#hits:';
+		show: '#Hits: ';
 		show: inst hits;
 		cr;
-		show: 'epsilon:';
+		show: 'Epsilon: ';
 		show: inst epsilon;
+		cr;
+		show: 'Error: ';
+		show: inst pi - Float pi;
 		cr.
 
 	self
-		assert: (pi_estimate roundDownTo: 7)
-		equals: (Float pi roundDownTo: 7)
+		assert: (pi_estimate roundDownTo: 8)
+		equals: (Float pi roundDownTo: 8)
 ]
