@@ -19,7 +19,7 @@ TestEstimate >> testInitializationIsOk [
 { #category : #tests }
 TestEstimate >> testWorking [
 
-	"Try to estimate PI"
+	"Try to estimate PI by the so called 'darts' algorithm using a RNG to generate random 'darts' throws."
 
 	| inst pi_estimate |
 	inst := MonteCarloPiEstimator new.
@@ -37,7 +37,7 @@ TestEstimate >> testWorking [
 		show: 'epsilon:';
 		show: inst epsilon;
 		cr.
-	
+
 	self
 		assert: (pi_estimate roundDownTo: 7)
 		equals: (Float pi roundDownTo: 7)
