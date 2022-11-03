@@ -21,9 +21,11 @@ TestEstimate >> testWorking [
 
 	"Estimate PI by the so called 'darts' algorithm using a RNG to generate random 'darts' throws."
 
-	| inst pi_estimate |
+	| inst pi_estimate err |
 	inst := MonteCarloPiEstimator new.
 	pi_estimate := inst estimate: 0.000000001 min_iterations: 1000.
+	err := inst pi - Float pi.
+	err < 0 ifTrue: [ err := -1.0 * err ].
 	Transcript
 		show: 'PI (estimated): ';
 		show: pi_estimate;
@@ -38,9 +40,7 @@ TestEstimate >> testWorking [
 		show: inst epsilon;
 		cr;
 		show: 'Error: ';
-		show: inst pi - Float pi;
+		show: err;
 		cr.
-	self
-		assert: (pi_estimate roundDownTo: 8)
-		equals: (Float pi roundDownTo: 8)
+	self assert: err <= 0.00001
 ]
