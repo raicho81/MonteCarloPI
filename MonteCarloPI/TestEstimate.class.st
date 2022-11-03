@@ -10,10 +10,10 @@ TestEstimate >> testInitializationIsOk [
 	| inst |
 	inst := MonteCarloPiEstimator new.
 	self assert: inst ~= nil.
-	self assert: inst pi equals: 0.
-	self assert: inst hits equals: 0.
-	self assert: inst shots equals: 0.
-	self assert: inst epsilon equals: Float infinity.
+	self assert: inst pi equals: 0.0.
+	self assert: inst hits equals: 0.0.
+	self assert: inst shots equals: 0.0.
+	self assert: inst epsilon equals: Float infinity
 ]
 
 { #category : #tests }
