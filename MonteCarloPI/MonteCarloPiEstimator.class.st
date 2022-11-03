@@ -26,26 +26,6 @@ MonteCarloPiEstimator >> epsilon: eps [
 ]
 
 { #category : #compute }
-MonteCarloPiEstimator >> estimate: target_eps [
-
-	| x y pi_i_1 pi_i |
-	pi_i := pi.
-
-	[ epsilon > target_eps ] whileTrue: [ 
-		1 to: 100000 do: [ :_ | 
-			pi_i_1 := pi_i.
-			x := rand nextBetween: -1 and: 1.
-			y := rand nextBetween: -1 and: 1.
-			x * x + (y * y) <= 1 ifTrue: [ hits := hits + 1 ].
-			shots := shots + 1.
-			pi_i := 4.0 * (hits / shots).
-			epsilon := pi_i_1 - pi_i.
-			epsilon < 0 ifTrue: [ epsilon := -1 * epsilon ] ] ].
-	pi := pi_i.
-	^ pi
-]
-
-{ #category : #compute }
 MonteCarloPiEstimator >> estimate: target_eps min_iterations: min_iter_count [
 
 	| x y pi_i_1 pi_i |
