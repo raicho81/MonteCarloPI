@@ -41,6 +41,7 @@ TestEstimate >> testWorking [
 		cr;
 		show: 'Error: ';
 		show: err;
+		cr;
 		cr.
 	self assert: err <= 0.0001
 ]
